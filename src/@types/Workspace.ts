@@ -1,5 +1,5 @@
 export interface Workspace {
-	id: number;
+	readonly id: number;
 	userId: number;
 	title: string;
 }
