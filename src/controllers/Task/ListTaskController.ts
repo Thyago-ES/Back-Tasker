@@ -1,6 +1,5 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { ListTaskService } from "../../services/Task/ListTaskService";
-import { Task } from "../../@types/Task";
 
 interface ListRequestProps {
 	Params: { workspaceId: string };
