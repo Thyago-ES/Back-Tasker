@@ -2,7 +2,7 @@ import { prismaClient } from "../../prisma";
 import { Task } from "../../@types/Task";
 
 export class UpdateTaskService {
-	async execute({ workspaceId, id, title, situation }: Task) {
+	async execute({ workspaceId, id, title, situation, description, priority }: Task) {
 		const existsTask = await prismaClient.task.findFirst({
 			where: { workspaceId, id },
 		});
@@ -11,13 +11,14 @@ export class UpdateTaskService {
 			throw new Error("Tarefa não encontrado!");
 		}
 
-		let data = {};
-		if (title) data = { title };
-		if (situation) data = { ...data, situation };
-
 		const updatedUser = await prismaClient.task.update({
 			where: { id, workspaceId },
-			data,
+			data: {
+				title,
+				situation,
+				description,
+				priority,
+			},
 		});
 
 		return updatedUser;
